@@ -5,7 +5,7 @@ import sys
 
 console = Console()
 print = console.print
-
+ignored_files = [".gitignore", "requirements.txt", "README.md"]
 
 # CONFIGURATION
 category_map = {
@@ -29,6 +29,8 @@ def get_all_files(directory: str):
         if str(i.absolute()) == __file__:
             continue
         if i.name == "reset.py":
+            continue
+        if i.name in ignored_files:
             continue
         category: list = filemap.get(i.suffix, [])
 
